@@ -199,6 +199,41 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .alerta-inv{background:var(--red-light);border:0.5px solid var(--red);border-radius:var(--radius-lg);padding:12px 16px;margin-bottom:14px;font-size:13px;color:var(--red);display:flex;align-items:center;gap:10px}
 .alerta-inv b{font-weight:600}
 
+
+/* CONFIG FACTURA */
+.cfg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:860px}
+.cfg-card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:18px}
+.cfg-card-title{font-size:13px;font-weight:600;margin-bottom:14px;padding-bottom:10px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:8px}
+.cfg-card-title svg{width:16px;height:16px;color:var(--text2)}
+.cfg-field{margin-bottom:12px}
+.cfg-label{font-size:12px;color:var(--text2);margin-bottom:4px;display:block}
+.cfg-input{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);background:var(--bg);color:var(--text);font-size:13px;outline:none}
+.cfg-input:focus{border-color:var(--blue)}
+.cfg-select{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);background:var(--bg);color:var(--text);font-size:13px;cursor:pointer;outline:none}
+.cfg-textarea{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);background:var(--bg);color:var(--text);font-size:13px;outline:none;resize:vertical;min-height:64px}
+.cfg-textarea:focus{border-color:var(--blue)}
+.cfg-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--border)}
+.cfg-toggle-row:last-child{border-bottom:none}
+.cfg-toggle-label{font-size:13px}
+.cfg-toggle-sub{font-size:11px;color:var(--text2);margin-top:1px}
+.toggle-switch{position:relative;width:38px;height:22px;flex-shrink:0}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:var(--border2);border-radius:22px;cursor:pointer;transition:.2s}
+.toggle-slider:before{position:absolute;content:"";width:16px;height:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+.toggle-switch input:checked+.toggle-slider{background:var(--green)}
+.toggle-switch input:checked+.toggle-slider:before{transform:translateX(16px)}
+.preview-box{background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius-lg);padding:16px;font-size:12px;line-height:1.8;min-height:260px}
+.preview-header{text-align:center;margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed var(--border2)}
+.preview-logo{font-size:18px;font-weight:700;margin-bottom:2px}
+.preview-sub{font-size:11px;color:var(--text2)}
+.preview-divider{border:none;border-top:1px dashed var(--border2);margin:8px 0}
+.preview-row{display:flex;justify-content:space-between;font-size:12px}
+.preview-total-row{display:flex;justify-content:space-between;font-weight:700;font-size:13px;border-top:1px solid var(--border2);padding-top:6px;margin-top:4px}
+.preview-footer{text-align:center;font-size:11px;color:var(--text2);margin-top:10px;padding-top:10px;border-top:1px dashed var(--border2)}
+.cfg-save-btn{background:var(--blue);color:#fff;border:none;border-radius:var(--radius);padding:10px 22px;cursor:pointer;font-size:13px;font-weight:500;margin-top:4px}
+.cfg-save-btn:hover{background:var(--blue-dark)}
+@media(max-width:700px){.cfg-grid{grid-template-columns:1fr}}
+
 /* ── MÓVIL ─────────────────────────────────────────── */
 @media(max-width:700px){
   .app{flex-direction:column}
@@ -300,6 +335,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
       <span>Inventario</span>
       <span class="badge-count" id="inv-alert-count" style="display:none;background:var(--red-light);color:var(--red)">!</span>
     </button>
+    <button class="nav-btn" onclick="showPanel('config',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <span>Configuración</span>
+    </button>
     <button class="nav-btn" onclick="showPanel('editar',this)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
       <span>Editar menú</span>
@@ -353,7 +392,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
                 </button>
               </div>
               <div id="cobro-receipt"></div>
-              <button class="process-btn" onclick="procesarPago()">✓ Procesar pago</button>
+
+              <!-- Valor recibido y vueltas (solo efectivo) -->
+              <div id="efectivo-section" style="margin-top:14px">
+                <div style="font-size:13px;font-weight:500;color:var(--text2);margin-bottom:8px">Valor recibido del cliente</div>
+                <div style="display:flex;gap:8px;margin-bottom:8px">
+                  <input class="cfg-input" id="valor-recibido" type="number" min="0" placeholder="0"
+                    oninput="calcVueltas()" style="flex:1;font-size:16px;font-weight:600;text-align:right;padding:10px">
+                  <button onclick="setValorRapido(0)" class="edit-btn" style="white-space:nowrap" title="Valor exacto">Exacto</button>
+                </div>
+                <!-- Botones rápidos de billetes COP -->
+                <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px" id="billetes-rapidos"></div>
+                <!-- Resultado vueltas -->
+                <div id="vueltas-box" style="display:none;background:var(--green-light);border:0.5px solid var(--green);border-radius:var(--radius-lg);padding:12px 16px;margin-bottom:10px">
+                  <div style="font-size:12px;color:var(--green-dark);margin-bottom:4px">Vueltas a entregar</div>
+                  <div id="vueltas-amount" style="font-size:26px;font-weight:700;color:var(--green-dark)">$0</div>
+                </div>
+                <div id="vueltas-error" style="display:none;background:var(--red-light);border:0.5px solid var(--red);border-radius:var(--radius-lg);padding:10px 14px;margin-bottom:10px;font-size:13px;color:var(--red)">
+                  ⚠️ El valor recibido es menor al total
+                </div>
+              </div>
+
+              <button class="process-btn" id="process-btn" onclick="procesarPago()" style="margin-top:6px">✓ Procesar pago</button>
             </div>
           </div>
         </div>
@@ -402,6 +462,107 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
             <thead><tr><th>Ingrediente</th><th>Categoría</th><th>Stock actual</th><th>Mín.</th><th>Unidad</th><th>Costo unit.</th><th>Estado</th><th></th></tr></thead>
             <tbody id="inv-tbody"></tbody>
           </table>
+        </div>
+
+
+        <!-- CONFIGURACIÓN FACTURA -->
+        <div class="panel" id="panel-config">
+          <div class="cfg-grid">
+
+            <!-- Datos del negocio -->
+            <div class="cfg-card">
+              <div class="cfg-card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Datos del negocio
+              </div>
+              <div class="cfg-field"><label class="cfg-label">Nombre del restaurante</label><input class="cfg-input" id="cfg-nombre" placeholder="Mi Restaurante"></div>
+              <div class="cfg-field"><label class="cfg-label">NIT / RUT</label><input class="cfg-input" id="cfg-nit" placeholder="900.123.456-7"></div>
+              <div class="cfg-field"><label class="cfg-label">Dirección</label><input class="cfg-input" id="cfg-direccion" placeholder="Calle 123 # 45-67"></div>
+              <div class="cfg-field"><label class="cfg-label">Ciudad</label><input class="cfg-input" id="cfg-ciudad" placeholder="Bogotá, Colombia"></div>
+              <div class="cfg-field"><label class="cfg-label">Teléfono</label><input class="cfg-input" id="cfg-telefono" placeholder="+57 300 123 4567"></div>
+              <div class="cfg-field"><label class="cfg-label">Correo electrónico</label><input class="cfg-input" id="cfg-email" placeholder="info@mirestaurante.com"></div>
+            </div>
+
+            <!-- Opciones de factura -->
+            <div class="cfg-card">
+              <div class="cfg-card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Opciones de factura
+              </div>
+              <div class="cfg-field"><label class="cfg-label">Prefijo de factura</label><input class="cfg-input" id="cfg-prefijo" placeholder="FAC-" style="max-width:140px"></div>
+              <div class="cfg-field"><label class="cfg-label">Número consecutivo actual</label><input class="cfg-input" id="cfg-consecutivo" type="number" min="1" placeholder="1" style="max-width:140px"></div>
+              <div class="cfg-field">
+                <label class="cfg-label">IVA (%)</label>
+                <select class="cfg-select" id="cfg-iva" style="max-width:140px">
+                  <option value="0">0% — Sin IVA</option>
+                  <option value="5">5%</option>
+                  <option value="8" selected>8%</option>
+                  <option value="19">19%</option>
+                </select>
+              </div>
+              <div class="cfg-field">
+                <label class="cfg-label">Tipo de documento</label>
+                <select class="cfg-select" id="cfg-tipo-doc">
+                  <option value="factura">Factura de venta</option>
+                  <option value="ticket">Ticket / Recibo</option>
+                  <option value="cuenta">Cuenta de cobro</option>
+                </select>
+              </div>
+              <div style="margin-top:14px">
+                <div class="cfg-toggle-row">
+                  <div><div class="cfg-toggle-label">Mostrar logo / nombre</div><div class="cfg-toggle-sub">Encabezado con nombre del negocio</div></div>
+                  <label class="toggle-switch"><input type="checkbox" id="tog-logo" checked><span class="toggle-slider"></span></label>
+                </div>
+                <div class="cfg-toggle-row">
+                  <div><div class="cfg-toggle-label">Mostrar NIT en factura</div><div class="cfg-toggle-sub">Aparece debajo del nombre</div></div>
+                  <label class="toggle-switch"><input type="checkbox" id="tog-nit" checked><span class="toggle-slider"></span></label>
+                </div>
+                <div class="cfg-toggle-row">
+                  <div><div class="cfg-toggle-label">Desglosar IVA</div><div class="cfg-toggle-sub">Muestra subtotal + IVA por separado</div></div>
+                  <label class="toggle-switch"><input type="checkbox" id="tog-iva" checked><span class="toggle-slider"></span></label>
+                </div>
+                <div class="cfg-toggle-row">
+                  <div><div class="cfg-toggle-label">Mostrar número de mesa</div></div>
+                  <label class="toggle-switch"><input type="checkbox" id="tog-mesa" checked><span class="toggle-slider"></span></label>
+                </div>
+                <div class="cfg-toggle-row">
+                  <div><div class="cfg-toggle-label">Mostrar método de pago</div></div>
+                  <label class="toggle-switch"><input type="checkbox" id="tog-metodo" checked><span class="toggle-slider"></span></label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pie de factura -->
+            <div class="cfg-card">
+              <div class="cfg-card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                Pie de página
+              </div>
+              <div class="cfg-field"><label class="cfg-label">Mensaje de agradecimiento</label><textarea class="cfg-textarea" id="cfg-gracias" placeholder="¡Gracias por su visita! Vuelva pronto."></textarea></div>
+              <div class="cfg-field"><label class="cfg-label">Texto adicional (términos, redes, etc.)</label><textarea class="cfg-textarea" id="cfg-footer" placeholder="Síguenos en Instagram: @mirestaurante"></textarea></div>
+              <div style="margin-top:14px">
+                <div class="cfg-toggle-row">
+                  <div><div class="cfg-toggle-label">Mostrar fecha y hora</div></div>
+                  <label class="toggle-switch"><input type="checkbox" id="tog-fecha" checked><span class="toggle-slider"></span></label>
+                </div>
+                <div class="cfg-toggle-row">
+                  <div><div class="cfg-toggle-label">Mostrar cajero / mesero</div></div>
+                  <label class="toggle-switch"><input type="checkbox" id="tog-cajero"><span class="toggle-slider"></span></label>
+                </div>
+              </div>
+              <button class="cfg-save-btn" onclick="saveConfig()" style="margin-top:18px;width:100%">💾 Guardar configuración</button>
+            </div>
+
+            <!-- Vista previa -->
+            <div class="cfg-card">
+              <div class="cfg-card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Vista previa de factura
+              </div>
+              <div class="preview-box" id="cfg-preview"></div>
+            </div>
+
+          </div>
         </div>
 
         <!-- EDITAR MENÚ -->
@@ -468,6 +629,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
   <button class="nav-btn" style="width:100%;justify-content:flex-start" onclick="showPanel('inventario',this);syncMobileNav('inventario');toggleMobileMore()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>
     <span>Inventario</span>
+  </button>
+  <button class="nav-btn" style="width:100%;justify-content:flex-start" onclick="showPanel('config',this);syncMobileNav('config');toggleMobileMore()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    <span>Configuración</span>
   </button>
   <button class="nav-btn" style="width:100%;justify-content:flex-start" onclick="showPanel('editar',this);syncMobileNav('editar');toggleMobileMore()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
@@ -597,6 +762,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 // ============================================================
 // ESTADO Y PERSISTENCIA
 // ============================================================
+const DEFAULT_CONFIG = {
+  nombre: 'Mi Restaurante',
+  nit: '',
+  direccion: '',
+  ciudad: '',
+  telefono: '',
+  email: '',
+  prefijo: 'FAC-',
+  consecutivo: 1,
+  iva: 8,
+  tipoDoc: 'factura',
+  gracias: '¡Gracias por su visita! Vuelva pronto.',
+  footer: '',
+  togLogo: true,
+  togNit: true,
+  togIva: true,
+  togMesa: true,
+  togMetodo: true,
+  togFecha: true,
+  togCajero: false,
+};
+
 const DEFAULT_INVENTORY = [
   {id:'i1',name:'Pollo crudo',cat:'Carnes y proteínas',stock:15,min:5,unit:'kg',cost:9000},
   {id:'i2',name:'Carne de res',cat:'Carnes y proteínas',stock:8,min:4,unit:'kg',cost:22000},
@@ -649,13 +836,15 @@ if(saved){
   if(!state.kitchen) state.kitchen = [];
   if(!state.sales) state.sales = {total:0,orders:0,items:{},hourly:Array(24).fill(0)};
   if(!state.inventory) state.inventory = DEFAULT_INVENTORY;
+  if(!state.config) state.config = DEFAULT_CONFIG;
 } else {
   state = {
     menu: DEFAULT_MENU,
     tables: Array.from({length:10},(_,i)=>({id:i+1,occupied:false,order:[]})),
     kitchen: [],
     sales: {total:0, orders:0, items:{}, hourly:Array(24).fill(0)},
-    inventory: DEFAULT_INVENTORY
+    inventory: DEFAULT_INVENTORY,
+    config: DEFAULT_CONFIG
   };
   saveState();
 }
@@ -694,7 +883,7 @@ function showPanel(p, btn){
   document.querySelectorAll('.nav-btn').forEach(el=>el.classList.remove('active'));
   $('panel-'+p).classList.add('active');
   if(btn) btn.classList.add('active');
-  const titles={mesas:'Mesas',menu:'Menú',cocina:'Comandas de cocina',cobro:'Cobro',reportes:'Reportes del día',editar:'Editar menú',inventario:'Control de inventario'};
+  const titles={mesas:'Mesas',menu:'Menú',cocina:'Comandas de cocina',cobro:'Cobro',reportes:'Reportes del día',editar:'Editar menú',inventario:'Control de inventario',config:'Configuración de factura'};
   $('topbar-title').textContent = titles[p];
   if(p!=='mesas'&&p!=='menu'){ $('order-panel').style.display='none'; selTable=null; }
   if($('mobile-more-menu')) $('mobile-more-menu').style.display='none';
@@ -705,6 +894,7 @@ function showPanel(p, btn){
   if(p==='reportes') renderReportes();
   if(p==='editar') renderEditMenu();
   if(p==='inventario') renderInventario();
+  if(p==='config') renderConfig();
 }
 
 // ============================================================
@@ -891,21 +1081,96 @@ function renderCobro(){
       });
       const sub = t.order.reduce((a,i)=>a+i.price*i.qty,0);
       const ivaDiv = document.createElement('div'); ivaDiv.className='receipt-row';
-      ivaDiv.innerHTML=`<span style="color:var(--text2)">IVA 8%</span><span>${fmt(sub*.08)}</span>`;
+      const ivaPct2=(state.config&&state.config.iva!=null?state.config.iva:8)/100;
+      ivaDiv.innerHTML=`<span style="color:var(--text2)">IVA ${state.config&&state.config.iva!=null?state.config.iva:8}%</span><span>${fmt(sub*ivaPct2)}</span>`;
       rr.appendChild(ivaDiv);
       const totDiv = document.createElement('div'); totDiv.className='receipt-total';
-      totDiv.innerHTML=`<span>Total</span><span>${fmt(sub*1.08)}</span>`;
+      const ivaPct3=(state.config&&state.config.iva!=null?state.config.iva:8)/100;
+      totDiv.innerHTML=`<span>Total</span><span>${fmt(sub*(1+ivaPct3))}</span>`;
       rr.appendChild(totDiv);
     }
   } else {
     rr.innerHTML='<div style="color:var(--text2);font-size:13px;padding:12px 0">Selecciona una mesa para ver el resumen</div>';
   }
+  // limpiar campo valor recibido al cambiar mesa
+  const vr=$('valor-recibido'); if(vr) vr.value='';
+  const vb=$('vueltas-box'); if(vb) vb.style.display='none';
+  const ve=$('vueltas-error'); if(ve) ve.style.display='none';
+  // mostrar/ocultar sección efectivo según método activo
+  const sec=$('efectivo-section');
+  if(sec) sec.style.display = selPayMethod==='efectivo'?'block':'none';
+  renderBilletesRapidos();
 }
 
 function selectPay(m){
   selPayMethod=m;
   ['efectivo','tarjeta','nequi'].forEach(p=>$('pay-'+p).classList.remove('active'));
   $('pay-'+m).classList.add('active');
+  const sec=$('efectivo-section');
+  if(sec) sec.style.display = m==='efectivo'?'block':'none';
+  if(m==='efectivo') calcVueltas();
+  else { const vb=$('vueltas-box'); const ve=$('vueltas-error'); if(vb)vb.style.display='none'; if(ve)ve.style.display='none'; }
+}
+
+function getTotal(){
+  if(!selCobroTable) return 0;
+  const t=state.tables[selCobroTable-1];
+  if(!t||!t.order.length) return 0;
+  const sub=t.order.reduce((a,i)=>a+i.price*i.qty,0);
+  const ivaPctG=(state.config&&state.config.iva!=null?state.config.iva:8)/100;
+  return Math.round(sub*(1+ivaPctG));
+}
+
+function calcVueltas(){
+  const total=getTotal();
+  const recibido=parseInt($('valor-recibido').value)||0;
+  const vb=$('vueltas-box'); const ve=$('vueltas-error');
+  if(!total||!recibido){if(vb)vb.style.display='none';if(ve)ve.style.display='none';return;}
+  if(recibido<total){
+    if(vb)vb.style.display='none';
+    if(ve)ve.style.display='block';
+  } else {
+    if(ve)ve.style.display='none';
+    if(vb){
+      vb.style.display='block';
+      $('vueltas-amount').textContent=fmt(recibido-total);
+    }
+  }
+}
+
+function setValorRapido(v){
+  const total=getTotal();
+  $('valor-recibido').value = v===0 ? total : v;
+  calcVueltas();
+}
+
+function renderBilletesRapidos(){
+  const total=getTotal();
+  const br=$('billetes-rapidos'); if(!br)return; br.innerHTML='';
+  if(!total) return;
+  const billetes=[1000,2000,5000,10000,20000,50000,100000,200000];
+  billetes.filter(b=>b>=total||b===billetes[billetes.length-1]).slice(0,6).forEach(b=>{
+    const btn=document.createElement('button');
+    btn.className='edit-btn';
+    btn.textContent='$'+b.toLocaleString('es-CO');
+    btn.onclick=()=>setValorRapido(b);
+    br.appendChild(btn);
+  });
+  // Agregar redondeos al billete más cercano superior
+  const roundUps=[
+    Math.ceil(total/5000)*5000,
+    Math.ceil(total/10000)*10000,
+    Math.ceil(total/20000)*20000,
+    Math.ceil(total/50000)*50000,
+  ].filter((v,i,a)=>v!==total&&a.indexOf(v)===i).slice(0,4);
+  roundUps.forEach(v=>{
+    const btn=document.createElement('button');
+    btn.className='edit-btn';
+    btn.style.background='var(--blue-light)';btn.style.color='var(--blue-dark)';btn.style.borderColor='var(--blue)';
+    btn.textContent='$'+v.toLocaleString('es-CO');
+    btn.onclick=()=>setValorRapido(v);
+    br.appendChild(btn);
+  });
 }
 
 function procesarPago(){
@@ -913,7 +1178,13 @@ function procesarPago(){
   const t = state.tables[selCobroTable-1];
   if(!t.order.length){ showToast('La mesa no tiene pedido'); return; }
   const sub = t.order.reduce((a,i)=>a+i.price*i.qty,0);
-  const total = Math.round(sub*1.08);
+  const ivaPct=(state.config&&state.config.iva!=null?state.config.iva:8)/100;
+  const total = Math.round(sub*(1+ivaPct));
+  // validar efectivo
+  if(selPayMethod==='efectivo'){
+    const recibido=parseInt($('valor-recibido').value)||0;
+    if(recibido>0 && recibido<total){ showToast('⚠️ El valor recibido es menor al total'); return; }
+  }
   // registrar ventas
   t.order.forEach(i=>{
     state.sales.items[i.name] = (state.sales.items[i.name]||0)+i.qty;
@@ -922,12 +1193,24 @@ function procesarPago(){
   state.sales.orders++;
   const h = new Date().getHours();
   state.sales.hourly[h] = (state.sales.hourly[h]||0)+total;
+  // calcular cambio
+  let cambio=0, recibido=0;
+  if(selPayMethod==='efectivo'){
+    recibido=parseInt($('valor-recibido').value)||0;
+    cambio = recibido>0 ? recibido-total : 0;
+  }
   // limpiar mesa
   t.order=[]; t.occupied=false;
-  const cambio = selPayMethod==='efectivo'?Math.round(total/10000)*10000-total:0;
-  const detail = selPayMethod==='efectivo'
-    ? `Total: ${fmt(total)}<br>Cambio: ${fmt(cambio)}`
-    : `Total: ${fmt(total)}<br>Pago con ${selPayMethod}`;
+  let detail='';
+  if(selPayMethod==='efectivo'){
+    detail=`<div style="margin-bottom:6px">Total: <b>${fmt(total)}</b></div>`;
+    if(recibido>0){
+      detail+=`<div style="margin-bottom:6px">Recibido: <b>${fmt(recibido)}</b></div>`;
+      detail+=`<div style="font-size:22px;font-weight:700;color:var(--green-dark)">Vueltas: ${fmt(cambio)}</div>`;
+    }
+  } else {
+    detail=`<div>Total: <b>${fmt(total)}</b></div><div style="margin-top:6px;color:var(--text2)">Pago con ${selPayMethod}</div>`;
+  }
   $('pay-modal-detail').innerHTML = detail;
   $('pay-modal').style.display='flex';
   selCobroTable=null;
@@ -1206,6 +1489,129 @@ function applyAdj(){
   else item.stock=Math.max(0,item.stock-qty);
   saveState(); closeAdjModal(); renderInventario();
   showToast(`Stock de ${item.name} actualizado: ${item.stock} ${item.unit}`);
+}
+
+// ============================================================
+// CONFIGURACIÓN DE FACTURA
+// ============================================================
+function renderConfig(){
+  const cfg = state.config;
+  $('cfg-nombre').value      = cfg.nombre      || '';
+  $('cfg-nit').value         = cfg.nit         || '';
+  $('cfg-direccion').value   = cfg.direccion   || '';
+  $('cfg-ciudad').value      = cfg.ciudad      || '';
+  $('cfg-telefono').value    = cfg.telefono    || '';
+  $('cfg-email').value       = cfg.email       || '';
+  $('cfg-prefijo').value     = cfg.prefijo     || 'FAC-';
+  $('cfg-consecutivo').value = cfg.consecutivo || 1;
+  $('cfg-iva').value         = String(cfg.iva  ?? 8);
+  $('cfg-tipo-doc').value    = cfg.tipoDoc     || 'factura';
+  $('cfg-gracias').value     = cfg.gracias     || '';
+  $('cfg-footer').value      = cfg.footer      || '';
+  $('tog-logo').checked      = cfg.togLogo    !== false;
+  $('tog-nit').checked       = cfg.togNit     !== false;
+  $('tog-iva').checked       = cfg.togIva     !== false;
+  $('tog-mesa').checked      = cfg.togMesa    !== false;
+  $('tog-metodo').checked    = cfg.togMetodo  !== false;
+  $('tog-fecha').checked     = cfg.togFecha   !== false;
+  $('tog-cajero').checked    = cfg.togCajero  === true;
+  // actualizar preview en tiempo real
+  ['cfg-nombre','cfg-nit','cfg-direccion','cfg-ciudad','cfg-telefono',
+   'cfg-email','cfg-prefijo','cfg-consecutivo','cfg-iva','cfg-tipo-doc',
+   'cfg-gracias','cfg-footer'].forEach(id=>{
+    $(id).addEventListener('input', updatePreview);
+  });
+  ['tog-logo','tog-nit','tog-iva','tog-mesa','tog-metodo','tog-fecha','tog-cajero'].forEach(id=>{
+    $(id).addEventListener('change', updatePreview);
+  });
+  updatePreview();
+}
+
+function getCfgValues(){
+  return {
+    nombre:      $('cfg-nombre').value.trim()      || 'Mi Restaurante',
+    nit:         $('cfg-nit').value.trim(),
+    direccion:   $('cfg-direccion').value.trim(),
+    ciudad:      $('cfg-ciudad').value.trim(),
+    telefono:    $('cfg-telefono').value.trim(),
+    email:       $('cfg-email').value.trim(),
+    prefijo:     $('cfg-prefijo').value.trim()      || 'FAC-',
+    consecutivo: parseInt($('cfg-consecutivo').value) || 1,
+    iva:         parseInt($('cfg-iva').value)        || 8,
+    tipoDoc:     $('cfg-tipo-doc').value,
+    gracias:     $('cfg-gracias').value.trim(),
+    footer:      $('cfg-footer').value.trim(),
+    togLogo:     $('tog-logo').checked,
+    togNit:      $('tog-nit').checked,
+    togIva:      $('tog-iva').checked,
+    togMesa:     $('tog-mesa').checked,
+    togMetodo:   $('tog-metodo').checked,
+    togFecha:    $('tog-fecha').checked,
+    togCajero:   $('tog-cajero').checked,
+  };
+}
+
+function updatePreview(){
+  const cfg = getCfgValues();
+  const now = new Date();
+  const fecha = now.toLocaleDateString('es-CO',{day:'2-digit',month:'2-digit',year:'numeric'});
+  const hora  = now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
+  const num   = cfg.prefijo + String(cfg.consecutivo).padStart(4,'0');
+  const tipoLabel = {factura:'FACTURA DE VENTA',ticket:'TICKET / RECIBO',cuenta:'CUENTA DE COBRO'}[cfg.tipoDoc]||'FACTURA';
+
+  // Ejemplo de ítems
+  const items = [
+    {name:'Bandeja paisa',qty:1,price:35000},
+    {name:'Jugo natural',qty:2,price:7000},
+    {name:'Tinto',qty:1,price:3000},
+  ];
+  const sub   = items.reduce((a,i)=>a+i.price*i.qty,0);
+  const iva   = Math.round(sub*(cfg.iva/100));
+  const total = sub+iva;
+
+  let html = '<div class="preview-header">';
+  if(cfg.togLogo) html += `<div class="preview-logo">${cfg.nombre}</div>`;
+  if(cfg.togNit && cfg.nit) html += `<div class="preview-sub">NIT: ${cfg.nit}</div>`;
+  if(cfg.direccion) html += `<div class="preview-sub">${cfg.direccion}${cfg.ciudad?', '+cfg.ciudad:''}</div>`;
+  if(cfg.telefono)  html += `<div class="preview-sub">Tel: ${cfg.telefono}</div>`;
+  html += `<div class="preview-sub" style="margin-top:6px;font-weight:600">${tipoLabel}</div>`;
+  html += `<div class="preview-sub">${num}</div>`;
+  if(cfg.togFecha) html += `<div class="preview-sub">${fecha} ${hora}</div>`;
+  html += '</div>';
+
+  if(cfg.togMesa) html += '<div class="preview-row"><span>Mesa</span><span>3</span></div>';
+  html += '<hr class="preview-divider">';
+
+  items.forEach(i=>{
+    html += `<div class="preview-row"><span>${i.qty}x ${i.name}</span><span>${fmt(i.price*i.qty)}</span></div>`;
+  });
+  html += '<hr class="preview-divider">';
+
+  if(cfg.togIva && cfg.iva>0){
+    html += `<div class="preview-row"><span style="color:var(--text2)">Subtotal</span><span>${fmt(sub)}</span></div>`;
+    html += `<div class="preview-row"><span style="color:var(--text2)">IVA ${cfg.iva}%</span><span>${fmt(iva)}</span></div>`;
+  }
+  html += `<div class="preview-total-row"><span>TOTAL</span><span>${fmt(total)}</span></div>`;
+
+  if(cfg.togMetodo) html += '<div class="preview-row" style="margin-top:6px"><span style="color:var(--text2)">Pago con</span><span>Efectivo</span></div>';
+  if(cfg.togCajero) html += '<div class="preview-row"><span style="color:var(--text2)">Atendido por</span><span>Cajero 1</span></div>';
+
+  if(cfg.gracias||cfg.footer){
+    html += '<div class="preview-footer">';
+    if(cfg.gracias) html += `<div>${cfg.gracias}</div>`;
+    if(cfg.footer)  html += `<div style="margin-top:4px">${cfg.footer}</div>`;
+    html += '</div>';
+  }
+
+  $('cfg-preview').innerHTML = html;
+}
+
+function saveConfig(){
+  state.config = getCfgValues();
+  // sincronizar IVA global con la configuración
+  saveState();
+  showToast('✅ Configuración guardada');
+  updatePreview();
 }
 
 // ============================================================
